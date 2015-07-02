@@ -2,4 +2,4 @@
 
 To build it: `./make.sh`
 
-To run it: `bin/ms`
+To run it: `sudo bin/ms`
