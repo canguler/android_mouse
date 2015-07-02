@@ -25,7 +25,7 @@ void BT_init(int *s, int *client) {
   // local bluetooth adapter
   loc_addr.rc_family = AF_BLUETOOTH;
   loc_addr.rc_bdaddr = *BDADDR_ANY;
-  loc_addr.rc_channel = (uint8_t) 1;
+  loc_addr.rc_channel = (uint8_t) 0;
   bind(*s, (struct sockaddr *)&loc_addr, sizeof(loc_addr));
 
   // put socket into listening mode
