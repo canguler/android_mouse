@@ -168,7 +168,7 @@ void mouse_step(int fd, int dx, int dy) {
     if (write(fd, &ev, sizeof(struct input_event)) < 0)
     die("error: write");
 
-    usleep(1000);
+    // usleep(1000);
   }
 }
 
