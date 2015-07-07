@@ -1,3 +1,3 @@
 #!/bin/bash
 mkdir -p bin
-gcc -o bin/ms ms.c -lbluetooth
+gcc -o bin/ms ms1.c -lbluetooth
