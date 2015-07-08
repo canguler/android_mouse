@@ -73,8 +73,6 @@ void mouse_init(int *fd) {
     }
   }
 
-
-
   if (ioctl(*fd, UI_SET_EVBIT, EV_REL) < 0) {
     die("error: ioctl");
   }
@@ -84,6 +82,14 @@ void mouse_init(int *fd) {
   }
 
   if (ioctl(*fd, UI_SET_RELBIT, REL_Y) < 0) {
+    die("error: ioctl");
+  }
+
+  if (ioctl(*fd, UI_SET_RELBIT, REL_WHEEL) < 0) {
+    die("error: ioctl");
+  }
+
+  if (ioctl(*fd, UI_SET_RELBIT, REL_HWHEEL) < 0) {
     die("error: ioctl");
   }
 
@@ -148,6 +154,34 @@ void mouse_click(int fd, char button, char actType) {
   ev.code = 0;
   ev.value = 0;
 
+  if (write(fd, &ev, sizeof(struct input_event)) < 0) {
+    die("error: write");
+  }
+}
+
+void scroll_wheel(int fd, int dx, int dy) {
+  struct input_event ev;
+
+  memset(&ev, 0, sizeof(struct input_event));
+  ev.type = EV_REL;
+  ev.code = REL_HWHEEL;
+  ev.value = dx;
+  if (write(fd, &ev, sizeof(struct input_event)) < 0) {
+    die("error: write");
+  }
+
+  memset(&ev, 0, sizeof(struct input_event));
+  ev.type = EV_REL;
+  ev.code = REL_WHEEL;
+  ev.value = dy;
+  if (write(fd, &ev, sizeof(struct input_event)) < 0) {
+    die("error: write");
+  }
+
+  memset(&ev, 0, sizeof(struct input_event));
+  ev.type = EV_SYN;
+  ev.code = 0;
+  ev.value = 0;
   if (write(fd, &ev, sizeof(struct input_event)) < 0) {
     die("error: write");
   }
@@ -249,7 +283,7 @@ int main(int argc, char **argv) {
         button = 'L';
       } else if (dx == 1) {
         button = 'R';
-      } else if (dx == 2 ) {
+      } else if (dx == 2) {
 	      button = '1';
       } else if (dx == 3) {
 	      button = '2';
@@ -262,6 +296,8 @@ int main(int argc, char **argv) {
       }
 
       mouse_click(fd, button, actType);
+    } else if (type == 'S') {
+      scroll_wheel(fd, dx, dy);
     }
   }
   mouse_final(&fd);
