@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9742ced04aafd9ac97dd2c66c1aa0e32d2ae7e54">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/pre-dexed/debug/classes-a704fa48a97fd981649da5358ec386d3fe2287dd.jar" />
+    </item>
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b017100da14f9c158c9f5f2f508333c224b24a7c">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/pre-dexed/debug/classes-6434aec839affb0674c54e9ddf9d50eba6fb1273.jar" />
+    </item>
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/libs/internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-a4107b8da705cb3cb30ac1da406d625051606cd0.jar" />
+    </item>
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b017100da14f9c158c9f5f2f508333c224b24a7c">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/pre-dexed/debug/classes-9004ae35220dc51cff8874c8d6c4a85f12430ce9.jar" />
+    </item>
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/libs/internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-cd90b0c36da21eaf7d1bfe0de53ac54a5fc0ac5f.jar" />
+    </item>
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9742ced04aafd9ac97dd2c66c1aa0e32d2ae7e54">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/pre-dexed/debug/classes-e8c8f1de3bdd6b1cae52bd8c73330b75f11577d6.jar" />
+    </item>
+    <item
+        jar="/home/can/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.2/support-annotations-21.0.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-a27007dbc36f14e25ae46c3425bc28cd5ca5b96d.jar" />
+    </item>
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added (another copy)/Application/build/intermediates/pre-dexed/debug/classes-21a79680d7eb2fb213a025e92f08d0a88715ac2b.jar" />
+    </item>
+    <item
+        jar="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
+        <dex dex="/home/can/BluetoothChat(Custom_buttons_added/Application/build/intermediates/pre-dexed/debug/classes-811f54f304ffc51a560a6c9740a851c559ac115b.jar" />
+    </item>
+
+</items>
