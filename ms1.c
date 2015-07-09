@@ -11,13 +11,17 @@
 #include <unistd.h>
 
 #define BUTTONCOUNT 2
+#define MAXPROFNUM 255
 
 #define die(str, args...) do { \
   perror(str); \
   exit(EXIT_FAILURE); \
 } while (0)
 
-int configBut[BUTTONCOUNT];
+int configBut[MAXPROFNUM][BUTTONCOUNT];
+int config_cnt = 0;
+char configName[MAXPROFNUM][MAXPROFNUM];
+int curr_config = 0;
 
 void BT_init(int *s, int *client) {
   struct sockaddr_rc loc_addr = { 0 }, rem_addr = { 0 };
@@ -41,15 +45,19 @@ void BT_init(int *s, int *client) {
 
 void mouse_init(int *fd) {
   struct uinput_user_dev uidev;
-  int i;
-  FILE *fconfig = fopen("mouse.cfg", "r");
+  int i, j;
 
-  for(i = 0; i<BUTTONCOUNT; i++) {
-    fscanf(fconfig, " %d", &(configBut[i])) ;
+  FILE *fconfig = fopen("profiles.txt", "r");
+
+  for (config_cnt = 0; !feof(fconfig); config_cnt++) {
+    fscanf(fconfig, " %s", configName[config_cnt]);
+    for(i = 0; i<BUTTONCOUNT; i++) {
+      fscanf(fconfig, " %d", &(configBut[config_cnt][i])) ;
+    }
+    // printf("%s %d %d\n", configName[config_cnt], configBut[config_cnt][0], configBut[config_cnt][1]);
   }
-
   fclose(fconfig);
-
+  config_cnt--;
   *fd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
   if (*fd < 0) {
     die("error: open");
@@ -67,9 +75,11 @@ void mouse_init(int *fd) {
     die("error: ioctl");
   }
 
-  for(i = 0; i< BUTTONCOUNT; i++) {
-    if(ioctl(*fd, UI_SET_KEYBIT, configBut[i]) < 0) {
-      die("error: ioctl");
+  for (j = 0; j < config_cnt; j++) {
+    for(i = 0; i < BUTTONCOUNT; i++) {
+      if(ioctl(*fd, UI_SET_KEYBIT, configBut[j][i]) < 0) {
+        die("error: ioctl");
+      }
     }
   }
 
@@ -126,20 +136,20 @@ void mouse_click(int fd, char button, char actType) {
   struct input_event ev;
 
   memset(&ev, 0, sizeof(struct input_event));
-  printf("Button pressed: %c\n", button);
+  // printf("Button pressed: %c\n", button);
   ev.type = EV_KEY;
   if (button == 'L') {
     ev.code = BTN_LEFT;
   } else if (button == 'R') {
     ev.code = BTN_RIGHT;
   } else if (button == '1') {
-    ev.code = configBut[0];
+    ev.code = configBut[curr_config][0];
   } else if (button == '2') {
-    ev.code = configBut[1];
+    ev.code = configBut[curr_config][1];
   }
 
   if (actType == 'P') {
-    printf("Pressed\n");
+    // printf("Pressed\n");
     ev.value = 1;
   } else if (actType == 'R') {
     ev.value = 0;
@@ -253,12 +263,18 @@ void BT_read(int client, int *dx, int *dy, char *type) {
   char buf[1024] = { 0 };
   int bytes_read = read(client, buf, sizeof(buf));
   if (bytes_read > 0) {
-    printf("Read: %s\n", buf);
+    // printf("Read: %s\n", buf);
     sscanf(buf, " %c %d %d", type, dx, dy);
     //printf("%d %d\n", dx, dy);
   } else {
     *dx = *dy = 0;
   }
+}
+
+void change_config() {
+  curr_config = (curr_config + 1) % config_cnt;
+  printf("C %s %d %d\n", configName[curr_config], configBut[curr_config][0], configBut[curr_config][1]);
+  fflush(stdout);
 }
 
 int main(int argc, char **argv) {
@@ -271,8 +287,8 @@ int main(int argc, char **argv) {
 
   mouse_init(&fd);
 
-  puts("ready");
-
+  puts("A 0 0 0");
+  fflush(stdout);
   // read data from the client
   while (1) {
     BT_read(client, &dx, &dy, &type);
@@ -298,6 +314,8 @@ int main(int argc, char **argv) {
       mouse_click(fd, button, actType);
     } else if (type == 'S') {
       scroll_wheel(fd, dx, dy);
+    } else if (type == 'C') {
+      change_config();
     }
   }
   mouse_final(&fd);
